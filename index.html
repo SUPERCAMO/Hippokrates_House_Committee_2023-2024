@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personalized Message</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, navy, beige);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: linear-gradient(135deg, navy, beige);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        h1 {
+            color: white;
+            font-size: 2.5em;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #4c6ef5; }
+            100% { text-shadow: 0 0 20px #4c6ef5, 0 0 30px #4c6ef5; }
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, navy, beige);
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }      
+        button:hover {
+            background-color: #5a7bff;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            max-height: 80%;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .close {
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .share-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .share-buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Please Enter Your Name</h1>
+        <form id="nameForm">
+            <input type="text" id="name" name="name" placeholder="Type your name..." required>
+            <button type="submit">See Your Message</button>
+        </form>
+
+        <!-- Share buttons section -->
+        <div class="share-buttons">
+            <button id="shareTwitter">Share on Twitter</button>
+            <button id="shareWhatsApp">Share on WhatsApp</button>
+            <button id="shareInstagram">Share on Instagram</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('nameForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let name = document.getElementById('name').value.toLowerCase();
+            let message = '';
+
+            switch (name) {
+                case 'lore':
+                    message = "I hope this message finds you in great spirits! Reflecting on our time in the house committee, I am filled with immense gratitude for your unwavering dedication and the vibrant energy you bring to our team. Your creativity and enthusiasm are a true blessing, evident in every project we tackle.I truly admire how you face challenges with positivity, transforming obstacles into chances for growth. Your unique insights often spark fresh ideas, encouraging us to think innovatively, and I appreciate your readiness to share these insights.Beyond your remarkable contributions, I treasure the moments we've shared—whether it’s sharing a laugh during meetings or collaborating late into the night on our projects. These memories highlight the strong bonds we’ve created and the supportive community we’re building together.Thank you for being not just an incredible team member but also a dear friend. I’m excited about our journey ahead and can’t wait to see all we will achieve together! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'tegan':
+                    message = "I wanted to take a moment to express my heartfelt appreciation for your presence on our house committee. Your enthusiasm and unwavering commitment are truly inspiring, leaving a positive mark on everything we do together. I admire how you approach every task with such passion and creativity. Your ideas often introduce fresh perspectives that elevate our projects. Collaborating with you is always exciting, as you blend enthusiasm with insight, making our meetings enjoyable and productive. Beyond your contributions, I cherish our lighthearted conversations and the laughter we share. These moments remind me of the friendships we’re cultivating along this journey. Thank you for being a vibrant part of our team and for the joy you bring. I look forward to all the amazing experiences that lie ahead for us! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'deandre':
+                    message = "I hope this message finds you well! I want to take this opportunity to express my deep appreciation for your outstanding contributions to our house committee. Your leadership and initiative have a profound impact on our team dynamics. Your ability to stay organized and focused, even during hectic times, is truly commendable. You possess a clear vision, and your knack for motivating everyone around you ensures our projects run smoothly. I value how you listen to every idea, fostering an inclusive atmosphere where all voices are heard. Beyond your exceptional contributions, I genuinely enjoy the camaraderie we share. Whether it’s casual chats about our goals or facing challenges together, our interactions always uplift me. Thank you for being an incredible committee member and a fantastic friend. I’m looking forward to what lies ahead and can’t wait to see our accomplishments! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'nabilah':
+                    message = "I wanted to take a moment to express my gratitude for having you on our house committee. Your creativity and insights significantly enhance our team, and I truly admire your passionate approach to everything you undertake. Your talent for thinking outside the box and devising innovative solutions is always impressive. I can always rely on you to bring fresh ideas to the table, turning complex challenges into exciting opportunities. It’s inspiring to work with someone so dedicated to exploring new possibilities. On a personal note, I cherish the moments we’ve spent together during meetings and planning sessions. Your humor and warmth create an inviting atmosphere that makes our team feel like a family. Thank you for being a wonderful colleague and friend. I look forward to continuing this journey together and achieving amazing things! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'breyton':
+                    message = "I hope you’re doing great! I wanted to take a moment to express my heartfelt appreciation for your contributions to our house committee. Your infectious energy and enthusiasm have a remarkable ability to unite our team.I admire your dedication and how you tackle every project with such vigor. Your capacity to motivate those around you creates a collaborative spirit that makes our meetings both enjoyable and productive. I always look forward to your thoughts and ideas, as they inspire the rest of us. Beyond your fantastic work ethic, I treasure the friendships we’ve built along the way. Sharing laughs and brainstorming solutions has made our time together truly special. Thank you for being an integral part of our team and for the joy you bring into our lives. I can’t wait to see what we’ll achieve together in the future! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'athenkosi':
+                    message = "I hope this message finds you well! I wanted to take a moment to express my sincere appreciation for your remarkable contributions to our house committee. Your unique perspective and thoughtfulness add a special touch to everything we do. I admire how you tackle challenges with grace and determination. Your ability to remain calm under pressure while providing effective solutions is genuinely impressive. Your insights often guide us toward clarity in complex situations. Beyond your impressive skills, I value the camaraderie we share. Whether we’re brainstorming ideas or enjoying lighthearted moments, your presence always uplifts the group. Thank you for being a supportive team member and fostering a sense of belonging among us. I’m excited about our journey ahead and can’t wait to see what we will achieve together! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'rashna':
+                    message = "I hope you’re having a wonderful day! I wanted to express my heartfelt gratitude for your presence in our house committee. Your enthusiasm and dedication inspire everyone around you, making a positive impact on our work. I admire how you bring people together, creating a sense of community. Your warm spirit and approachable nature encourage everyone to share their ideas, fostering an environment rich in collaboration and creativity. It’s a rare gift to connect with others so effortlessly, and I appreciate how you strengthen our team. Beyond your contributions, I cherish the genuine friendships we’re building. Whether brainstorming or enjoying downtime together, those moments remind me of the supportive community we’re creating. Thank you for being an incredible team member and a wonderful friend. I look forward to all the amazing experiences we’ll share in the future! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'reaiah':
+                    message = "I hope you’re doing well! I wanted to take a moment to express my heartfelt gratitude for everything you bring to our house committee. Your creativity and enthusiasm are truly refreshing, significantly impacting our team.I admire your openminded approach and can-do attitude toward every task. Your creative thinking and innovative solutions never cease to impress me. You inspire those around you to strive for excellence, and it’s a joy to collaborate with you. On a personal level, I cherish the moments we've shared, whether brainstorming ideas or enjoying each other's company. Your warmth and kindness create a supportive atmosphere, making our team feel like family. Thank you for being an integral part of our journey. I’m excited about what lies ahead for us and can’t wait to see the wonderful things we will accomplish together! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'karabo d':
+                    message = "I hope this message finds you in great spirits! I wanted to take a moment to share my appreciation for everything you contribute to our house committee. Your dedication and hard work significantly enhance our team’s success. I’m continually inspired by your strong work ethic and your ability to stay organized, even in challenging situations. You have a knack for clarifying our projects, and I genuinely value your insights during our discussions. Your contributions have been vital, and I’m grateful to have you on our team. Beyond your incredible skills, I treasure the friendships we are forming. The laughter and shared experiences we’ve had truly make this journey special. Thank you for being a supportive colleague and always ready to lend a helping hand. I look forward to continuing this adventure together and achieving even greater things in the future! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'karabo s':
+                    message = "I hope you’re having an amazing day! I wanted to take a moment to express my sincere appreciation for all that you bring to our house committee. Your infectious enthusiasm and vibrant spirit add so much joy to our team. I admire how you approach each task with a sense of fun and creativity. You have a remarkable talent for engaging our group and making our projects exciting. Your unique ideas often spark inspiration in others, and I’m grateful for the fresh perspective you bring. On a personal note, I cherish the moments we've shared—whether collaborating on a project or simply enjoying a laugh. Your positivity and warmth create a welcoming atmosphere that makes everyone feel valued and included. Thank you for being an integral part of our team and for the joy you contribute to our journey. I’m looking forward to all the wonderful experiences we’ll create together in the future! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'thembelihle':
+                    message = "I hope this message finds you well! I wanted to take a moment to express my heartfelt gratitude for your exceptional leadership as Vice Primaria in our house committee. Your dedication and commitment to our team are truly inspiring and make a significant difference in our work. I admire your ability to lead with strength and compassion. You balance authority with approachability, creating an environment where everyone feels comfortable sharing their ideas. Your thoughtful guidance helps us navigate challenges with confidence, and I appreciate the clarity you bring to our discussions. Beyond your leadership, I cherish the moments we’ve spent together brainstorming new initiatives. Your positive energy uplifts the entire team, making our journey not just productive but also enjoyable. Thank you for being a wonderful friend and an integral part of our group. I’m excited about the future and all the amazing things we will accomplish together! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'kgothatso':
+                    message = "I hope this note finds you in great spirits! I wanted to take a moment to express my deep appreciation for your outstanding leadership as Vice Primarius in our house committee. Your dedication and vision elevate our team and inspire us all to strive for excellence. I admire your ability to motivate others and foster collaboration within our group. Your thoughtful approach to problem solving encourages us to tackle challenges with creativity and confidence. I truly value your insights and the way you steer our discussions toward positive outcomes. Beyond your leadership skills, I treasure the friendships we’re forming along the way. Sharing laughter and brainstorming sessions creates lasting memories that make this journey special. Thank you for being such an incredible leader and a supportive friend. I look forward to our future endeavors and the remarkable achievements that await us! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'stephanie':
+                    message = "I hope you’re doing well! I wanted to take a moment to express my heartfelt gratitude for your exceptional guidance and support as our Head Mentor. Your commitment to our committee and your unwavering dedication to helping each of us grow are truly inspiring. Your ability to lead by example creates an environment where everyone feels empowered to reach their full potential. I deeply appreciate the time you invest in nurturing our skills and talents, making complex ideas accessible while encouraging us to push our limits. Your wisdom and encouragement have made a significant impact on my personal growth.Beyond your mentorship, I cherish the meaningful connections we’ve formed. Your kindness and humor foster a supportive atmosphere, making our journey together enjoyable. Thank you for being such a wonderful friend and for your continuous encouragement. I’m excited about the path ahead and all the wonderful opportunities we’ll have to learn and grow together! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+                case 'vumbhoni':
+                    message = "I hope you’re having a fantastic day! I wanted to take a moment to express my sincere appreciation for your outstanding work as our Scribe. Your meticulous attention to detail and commitment to keeping our records organized have been invaluable to our committee. I admire how you capture the essence of our discussions and decisions so thoughtfully. Your ability to document everything accurately ensures that we stay on track and make informed decisions as a team. It’s a crucial role, and your dedication shines through in every task you undertake. Beyond your exceptional skills, I value the warmth and positivity you bring to our group. Your friendly demeanor makes everyone feel comfortable and fosters an inclusive atmosphere that enhances our collaboration. Thank you for being such a vital part of our team and for your unwavering support. I’m looking forward to all the great things we will achieve together as we continue this journey! With heartfelt appreciation, Cameron Andreas Naidoo";
+                    break;
+                case 'naweed':
+                    message = "I hope this message finds you well! I wanted to take a moment to express my heartfelt gratitude for your exceptional leadership as our Residence Head. Your dedication to our community and your ability to create a welcoming environment are truly commendable. I admire your strong sense of responsibility and how you handle challenges with grace and determination. Your vision for our residence fosters a sense of belonging among us, and your efforts to ensure that everyone feels included make a significant difference. I appreciate how you always take the time to listen to our concerns and ideas, making each of us feel valued. On a personal note, I cherish the moments we've shared, whether during team meetings or casual conversations. Your approachable nature and genuine kindness have helped build a strong sense of community, and I’m grateful for the friendships we are forming along the way. Thank you for being such an inspiring leader and a wonderful friend. I’m excited about the journey ahead and all the great things we will accomplish together! With heartfelt appreciation, Cameron Andreas Naidoo.";
+                    break;
+
+                default:
+                    message = '✨ Hey ' + name + ', the world is yours to conquer!';
+            }
+
+            document.getElementById('modalMessage').innerText = message;
+            document.getElementById('messageModal').style.display = 'flex';
+        });
+
+        // Close the modal
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('messageModal').style.display = 'none';
+        });
+
+        // Share buttons functionality
+        document.getElementById('shareTwitter').addEventListener('click', function() {
+            let message = document.getElementById('modalMessage').innerText;
+            let shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(message + " #MyYearbookMessage");
+            window.open(shareUrl, '_blank');
+        });
+
+        document.getElementById('shareWhatsApp').addEventListener('click', function() {
+            let message = document.getElementById('modalMessage').innerText;
+            let shareUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(message);
+            window.open(shareUrl, '_blank');
+        });
+
+        document.getElementById('shareInstagram').addEventListener('click', function() {
+            let message = document.getElementById('modalMessage').innerText;
+            let shareUrl = "https://instagram.com";
+            window.open(shareUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
