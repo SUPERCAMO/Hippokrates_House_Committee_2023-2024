@@ -14,6 +14,7 @@
             justify-content: center;
             align-items: center;
             margin: 0;
+            overflow: hidden;
         }
         .container {
             text-align: center;
@@ -22,6 +23,8 @@
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1.5s ease-in-out;
+            position: relative;
+            z-index: 2;
         }
         h1 {
             color: white;
@@ -61,6 +64,44 @@
             from { opacity: 0; transform: translateY(-50px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            width: 110px; /* Increase logo size */
+            height: auto;
+            z-index: 1;
+        }
+
+        /* Floating bubbles */
+        .bubble {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('logo.png') no-repeat center center;
+            background-size: contain;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 8s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-150px) translateX(50px);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(0) translateX(-50px);
+                opacity: 0.8;
+            }
+        }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -71,6 +112,7 @@
             background-color: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
+            z-index: 999; /* Ensuring modal appears on top */
         }
         .modal-content {
             background-color: white;
@@ -80,6 +122,8 @@
             max-height: 80%;
             overflow-y: auto;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1000;
         }
         .close {
             color: red;
@@ -103,6 +147,9 @@
     </style>
 </head>
 <body>
+    <!-- Logo at the top center -->
+    <img src="logo.png" alt="Logo" class="logo" style="top: 20px; left: calc(50% - 75px);">
+    
     <div class="container">
         <h1>Please Enter Your Name</h1>
         <form id="nameForm">
@@ -126,13 +173,24 @@
         </div>
     </div>
 
+    <!-- Floating bubbles (logos) -->
+    <div class="bubble" style="top: 10%; left: 10%; animation-duration: 10s;"></div>
+    <div class="bubble" style="top: 20%; left: 80%; animation-duration: 12s;"></div>
+    <div class="bubble" style="top: 50%; left: 30%; animation-duration: 9s;"></div>
+    <div class="bubble" style="top: 70%; left: 70%; animation-duration: 11s;"></div>
+    <div class="bubble" style="top: 80%; left: 20%; animation-duration: 10s;"></div>
+    <div class="bubble" style="top: 15%; left: 40%; animation-duration: 9s;"></div>
+    <div class="bubble" style="top: 55%; left: 90%; animation-duration: 10s;"></div>
+    <div class="bubble" style="top: 75%; left: 5%; animation-duration: 8s;"></div>
+    <div class="bubble" style="top: 30%; left: 60%; animation-duration: 9s;"></div>
+
     <script>
         document.getElementById('nameForm').addEventListener('submit', function(event) {
             event.preventDefault();
             let name = document.getElementById('name').value.toLowerCase();
             let message = '';
 
-            switch (name) {
+switch (name) {
                 case 'lore':
                     message = "I hope this message finds you in great spirits! Reflecting on our time in the house committee, I am filled with immense gratitude for your unwavering dedication and the vibrant energy you bring to our team. Your creativity and enthusiasm are a true blessing, evident in every project we tackle.I truly admire how you face challenges with positivity, transforming obstacles into chances for growth. Your unique insights often spark fresh ideas, encouraging us to think innovatively, and I appreciate your readiness to share these insights.Beyond your remarkable contributions, I treasure the moments we've shared—whether it’s sharing a laugh during meetings or collaborating late into the night on our projects. These memories highlight the strong bonds we’ve created and the supportive community we’re building together.Thank you for being not just an incredible team member but also a dear friend. I’m excited about our journey ahead and can’t wait to see all we will achieve together! With heartfelt appreciation, Cameron Andreas Naidoo.";
                     break;
@@ -201,14 +259,13 @@
 
         document.getElementById('shareWhatsApp').addEventListener('click', function() {
             let message = document.getElementById('modalMessage').innerText;
-            let shareUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(message);
+            let shareUrl = "https://wa.me/?text=" + encodeURIComponent(message + " #MyYearbookMessage");
             window.open(shareUrl, '_blank');
         });
 
         document.getElementById('shareInstagram').addEventListener('click', function() {
             let message = document.getElementById('modalMessage').innerText;
-            let shareUrl = "https://instagram.com";
-            window.open(shareUrl, '_blank');
+            alert("Instagram doesn't allow direct message sharing. Screenshot the message and post it on your feed with #MyYearbookMessage");
         });
     </script>
 </body>
